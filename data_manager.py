@@ -1,4 +1,4 @@
-""" This script handles the interaction with the movie database """
+""" This script handles the interaction with the movie database. """
 from models import db, User, Movie
 
 class DataManager():
