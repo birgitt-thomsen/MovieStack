@@ -1,5 +1,60 @@
 {% extends "base.html" %}
 {% block content %}
 
+<a href="{{ url_for('index') }}">⬅ Back to Users</a>
 
+<h1>Movies for {{user.name }}</h1>
+
+    {% for movie in movies %}
+    <div class="movie-card">
+
+        {% if movie.poster_url %}
+        <img src="{{ movie.poster_url }}" alt="{{ movie.name }} poster">
+        {% else %}{% endif %}
+
+        <form action="{{ url_for('update_movie',
+                             user_id=user.id,
+                             movie_id=movie.id) }}" method="POST">
+            <input
+                type="text"
+                name="title"
+                value="{{ movie.name }}"
+                required>
+            <button type="submit">Update</button>
+        </form>
+
+        {% if movie.year %}
+        <p>{{ movie.year }}</p>
+        {% else %}{% endif %}
+
+        {% if movie.director %}
+        <p>{{ movie.director }}</p>
+        {% else %}{% endif %}
+
+        <form action="{{ url_for('delete_movie',
+                             user_id=user.id,
+                             movie_id=movie.id) }}"
+          method="POST">
+        <button type="submit">Delete</button>
+    </form>
+
+    </div>
+    {% endfor %}
+
+ <h3>Add New Movie</h3>
+
+    <form action="{{ url_for('add_movie', user_id=user.id) }}" method="POST">
+        <input
+            type="text"
+            name="title"
+            placeholder="Movie title"
+            required
+        >
+        <input
+            type="number"
+            name="year"
+            placeholder="Year (optional)"
+        >
+        <button type="submit">Add Movie</button>
+    </form>
 {% endblock %}
