@@ -9,9 +9,16 @@ load_dotenv()
 API_KEY = os.getenv('API_KEY')
 REQUEST_URL = "https://www.omdbapi.com/"
 
-def get_movie_from_omdb(title):
+def get_movie_from_omdb(title, year=None):
 	try:
-		params = {'apikey': API_KEY, 't': title}
+		params = {
+			"apikey": API_KEY,
+			"t": title
+		}
+
+		if year:
+			params["y"] = year
+
 		response = requests.get(REQUEST_URL,
 		                        params=params,
 		                        timeout=5)
@@ -34,4 +41,4 @@ def get_movie_from_omdb(title):
 	except requests.exceptions.RequestException:
 		return None
 
-print(get_movie_from_omdb('Moneyball'))
+# print(get_movie_from_omdb('Moneyball'))
