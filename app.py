@@ -1,6 +1,6 @@
 """ This module handles all requests and queries tied to flask routes."""
 import os
-from flask import Flask
+from flask import Flask, render_template, request, redirect, url_for
 from data_manager import DataManager
 from models import db, Movie
 
@@ -10,26 +10,39 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(basedir, 'data/movies.db')}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db.init_app(app)  # Link the database and the app. This is the reason you need to import db from models
+db.init_app(app)  # Link the database and the app.
 
 data_manager = DataManager() # Create an object of your DataManager class
 
 @app.route('/')
 def index():
-    """ Show a list of all registered users and a form for adding new users."""
-    pass
+    """ Get a list of all registered users and pass them to index.html."""
+    users = data_manager.get_users()
+
+    return render_template('index.html', users=users)
 
 @app.route('/users', methods=['POST'])
 def create_user():
-    """The server receives the new user info, adds it to the database,
-    then redirects back to /."""
-    pass
+    """Get username from data form and pass it on to the create_user
+    function in data_manager."""
+    username = request.form.get("username", "").strip()
+
+    if not username:
+        return redirect(url_for("index"))
+
+    data_manager.create_user(username)
+
+    return redirect(url_for("index"))
 
 @app.route('/users/<int:user_id>/movies', methods=['GET'])
 def get_user_movies(user_id):
     """Clicking on a user name, the app retrieves that user’s list of favorite
     movies and displays it."""
-    pass
+    movies = data_manager.get_movies(user_id)
+    return render_template(
+        "movies.html",
+        movies=movies
+    )
 
 @app.route('/users/<int:user_id>/movies', methods=['POST'])
 def add_movie(user_id):
