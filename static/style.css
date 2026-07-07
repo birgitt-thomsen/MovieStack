@@ -1,0 +1,257 @@
+/* ==========================
+   Global
+========================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: #edf2f4;
+    color: #2f3a40;
+}
+
+.container {
+    width: min(1200px, 90%);
+    margin: 40px auto;
+}
+
+h1 {
+    color: #0f766e;
+    margin-bottom: 12px;
+    font-size: 2.5rem;
+}
+
+h2 {
+    color: #495057;
+    margin: 40px 0 20px;
+}
+
+h3 {
+    margin-bottom: 16px;
+}
+
+/* ==========================
+   Header
+========================== */
+
+.site-header {
+    background: #0f766e;
+    color: white;
+    padding: 22px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,.15);
+}
+
+.header-content {
+    width: min(1200px, 90%);
+    margin: auto;
+}
+
+.site-header h1 {
+    margin: 0;
+    color: white;
+    font-size: 2rem;
+}
+
+/* ==========================
+   Footer
+========================== */
+
+.site-footer {
+    margin-top: 60px;
+    background: #0f766e;
+    color: white;
+    text-align: center;
+    padding: 18px;
+    font-size: .9rem;
+}
+
+/* ==========================
+   Links
+========================== */
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 25px;
+    color: #0f766e;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* ==========================
+   User Grid
+========================== */
+
+.user-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+.user-card {
+    background: white;
+    padding: 24px;
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: 0 8px 18px rgba(0,0,0,.08);
+    transition: .2s;
+}
+
+.user-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,.12);
+}
+
+/* ==========================
+   Movie Grid
+========================== */
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 28px;
+}
+
+.movie-card {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 18px rgba(0,0,0,.08);
+    transition: .2s;
+}
+
+.movie-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,.12);
+}
+
+.movie-card img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+}
+
+.poster-placeholder {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    background: #d7e3e5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+}
+
+.movie-info {
+    padding: 18px;
+}
+
+.movie-info p {
+    margin-top: 8px;
+    color: #5c6770;
+    font-size: .95rem;
+}
+
+/* ==========================
+   Forms
+========================== */
+
+.movie-info form:first-child {
+    margin-bottom: 14px;
+}
+
+.form-section {
+    margin-top: 50px;
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 8px 18px rgba(0,0,0,.08);
+}
+
+.add-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.add-form input {
+    flex: 1;
+}
+
+input {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: .95rem;
+    margin-bottom: 10px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #0f766e;
+}
+
+/* ==========================
+   Buttons
+========================== */
+
+button,
+.btn {
+    display: inline-block;
+    width: 100%;
+    padding: 11px;
+    border: none;
+    border-radius: 8px;
+    background: #0f766e;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: .95rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: .2s;
+}
+
+button:hover,
+.btn:hover {
+    background: #115e59;
+}
+
+.delete-btn {
+    background: #d94841;
+}
+
+.delete-btn:hover {
+    background: #b02d2d;
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 95%;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .movie-grid,
+    .user-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .add-form {
+        flex-direction: column;
+    }
+}
