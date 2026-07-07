@@ -1,14 +1,17 @@
 """ This module handles all requests and queries tied to flask routes."""
+
 import os
 from flask import Flask, render_template, request, redirect, url_for, abort
-from MovieStack import movie_service
+import movie_service
 from data_manager import DataManager
 from models import db, Movie
 
 app = Flask(__name__)
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(basedir, 'data/movies.db')}"
+app.config['SQLALCHEMY_DATABASE_URI'] = (
+    f"sqlite:///{os.path.join(basedir, 'data/moviestack.db')}"
+)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)  # Link the database and the app.
